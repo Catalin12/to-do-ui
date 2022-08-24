@@ -1,0 +1,18 @@
+<p-card header={{task.title}} (mouseenter)="areTaskDetailsShown=true" (mouseleave)="areTaskDetailsShown=false">
+	<p>{{task.description}}</p>
+	<div *ngIf="areTaskDetailsShown">
+		<div>
+			<p-toggleButton [(ngModel)]="task.isCompleted"
+				(click)="handleClickStatus()"
+				[onIcon]="'pi pi-minus-circle'" 
+				[offIcon]="'pi pi-check-circle'"
+				[onLabel]="'Move in progress'"
+				[offLabel]="'Mark as done'"
+				[iconPos]="'right'"
+				class="p-button-danger">
+			</p-toggleButton>
+			<button pButton label="Edit" type="button" icon="pi pi-user-edit" [iconPos]="'right'" class="p-button-secondary" (click)="handleClickEdit()"></button>
+			<button pButton label="Delete" type="button" icon="pi pi-trash" [iconPos]="'right'" class="p-button-danger" (click)="handleClickDelete()"></button>
+		</div>
+	</div>
+</p-card>
