@@ -1,6 +1,4 @@
 <button pButton type="button" label="New Task" class="p-button-success" (click)="handleTaskForm()"></button>
-
-
 <h1>In progress</h1>
 <div *ngFor="let task of taskList">
 	<task *ngIf="!task.isCompleted" [task]="task"></task>
