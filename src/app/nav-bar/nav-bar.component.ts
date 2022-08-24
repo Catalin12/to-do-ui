@@ -14,29 +14,17 @@ export class NavBarComponent {
 	@Output()
 	public showTasksInProgressEvent = new EventEmitter<boolean>();
 
-
 	public constructor(private router: Router) {
 		this.items = [
 			{
-				label:"Tasks",
-				icon:"pi pi-fw pi-file",
-				items:[
-					{
-						label:"In progress",
-						icon:"pi pi-fw pi-sync",
-						command: (): void => { this.handleShowTasksInProgress(); }
-					},
-					{
-						label:"Completed",
-						icon:"pi pi-fw pi-check",
-						command: (): void => { this.handleShowTasksCompleted(); }
-					}
-				]
+				label:"In progress tasks",
+				icon:"pi pi-fw pi-sync",
+				command: (): void => { this.handleShowTasksInProgress(); }
 			},
 			{
-				label:"Logout",
-				icon:"pi pi-fw pi-sign-out",
-				command: (): void => { this.handleLogout(); }
+				label:"Completed tasks",
+				icon:"pi pi-fw pi-check",
+				command: (): void => { this.handleShowTasksCompleted(); }
 			}
 		];
 	}
