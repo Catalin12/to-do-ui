@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormControl, FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
 	selector: "task-form",
@@ -13,7 +13,7 @@ export class TaskFormComponent {
 		description: [""],
 		isCompleted: false
 	});
-	public name = new FormControl("");
+
 	public constructor(
 		private formBuilder: FormBuilder
 	) { }

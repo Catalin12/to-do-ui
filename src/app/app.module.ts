@@ -5,14 +5,11 @@ import { AppComponent } from "./app.component";
 import { FormsModule } from "@angular/forms";
 import { DialogModule } from "primeng/dialog";
 import { ReactiveFormsModule } from "@angular/forms";
-
 import { ButtonModule } from "primeng/button";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { HomePageComponent } from "./home-page/home-page.component";
 import { TaskFormComponent } from "./task-form/task-form.component";
-
-
 
 @NgModule({
 	declarations: [
