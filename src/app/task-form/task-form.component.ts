@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 
 @Component({
@@ -6,7 +6,7 @@ import { FormBuilder, Validators } from "@angular/forms";
 	templateUrl: "./task-form.component.html",
 	styleUrls: ["./task-form.component.css"]
 })
-export class TaskFormComponent {
+export class TaskFormComponent implements OnInit {
 
 	public taskForm = this.formBuilder.group({
 		title: ["", Validators.required],
@@ -20,6 +20,14 @@ export class TaskFormComponent {
 
 	public onSubmit(): void {
 		console.warn(this.taskForm.value);
+	}
+
+	public ngOnInit(): void {
+		this.taskForm.setValue({
+			title: "",
+			description: "",
+			isCompleted: false
+		});
 	}
 
 }

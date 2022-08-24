@@ -1,17 +1,22 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { DialogService } from "primeng/dynamicdialog";
 
 import { TaskDTO } from "../shared/TaskDTO";
+import { TaskFormComponent } from "../task-form/task-form.component";
 
 @Component({
 	selector: "task-list",
 	templateUrl: "./task-list.component.html",
-	styleUrls: ["./task-list.component.css"]
+	styleUrls: ["./task-list.component.css"],
+	providers: [DialogService]
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent {
 
 	public taskList: TaskDTO[];
 
-	public constructor() {
+	public constructor(
+		private dialogService: DialogService
+	) {
 		this.taskList = [
 			{
 				id: 1,
@@ -32,7 +37,17 @@ export class TaskListComponent implements OnInit {
 		];
 	}
 
-	public ngOnInit(): void {
+	public handleTaskForm(): void {
+		console.warn("handleTaskForm() was called.");
+		this.dialogService.open(TaskFormComponent, {
+			height: "40%",
+			width: "20%",
+			data: {
+				title: "",
+				description: "",
+				isCompleted: false,
+			}
+		});
 	}
 
 }
