@@ -1,12 +1,10 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
-import { CardModule} from "primeng/card";
-import { ToggleButtonModule} from "primeng/togglebutton";
-import { ButtonModule } from "primeng/button";
+import { CardModule } from "primeng/card";
+import { ToggleButtonModule } from "primeng/togglebutton";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { FormsModule } from "@angular/forms";
 import { DialogModule } from "primeng/dialog";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
@@ -21,19 +19,19 @@ import { TaskListComponent } from "./task-list/task-list.component";
 	declarations: [
 		AppComponent,
 		HomePageComponent,
-    TaskFormComponent,
-    TaskComponent,
+		TaskFormComponent,
+		TaskComponent,
 		TaskListComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		FormsModule,
-    ButtonModule,
+		ButtonModule,
 		DialogModule,
 		BrowserAnimationsModule,
 		ReactiveFormsModule,
-    CardModule,
+		CardModule,
 		ToggleButtonModule,
 		ButtonModule
 	],
