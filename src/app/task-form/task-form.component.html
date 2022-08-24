@@ -1,0 +1,15 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+
+	<span class="p-float-label" style="margin-bottom:15px">
+		<input type="text" id="title" formControlName="title" placeholder="Task Titl" pInputText>
+		<label *ngIf="!taskForm.value.title" for="inputtext">Task Title</label>
+	</span>
+
+	<span class="p-float-label" style="margin-bottom:15px">
+		<input type="text" id="description" formControlName="description" pInputText>
+		<label *ngIf="!taskForm.value.description" for="inputtext">Task Description</label>
+	</span>
+	<button pButton type="submit" class="p-button-success" style="margin:5px"
+		[disabled]="!taskForm.value.title">Submit</button>
+
+</form>
