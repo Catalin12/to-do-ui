@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 import { TaskDTO } from "../shared/TaskDTO";
 
@@ -7,36 +7,26 @@ import { TaskDTO } from "../shared/TaskDTO";
 	templateUrl: "./task.component.html",
 	styleUrls: ["./task.component.css"]
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent {
 
-	public taskTest: TaskDTO;
+	@Input()
+	public task: TaskDTO = {};
+
 	public areTaskDetailsShown: boolean = false;
 
 	public constructor() {
-		this.taskTest = {
-			id: 1,
-			title: "Title",
-			description: "Description",
-			isCompleted: false,
-			isDeleted: false,
-			userId: 1
-		};
-	}
-
-	public ngOnInit(): void {
-		console.log("Init TaskComponent");
 	}
 
 	public handleClickStatus(): void {
-		console.log(this.taskTest.isCompleted);
+		console.log(this.task.isCompleted, this.task.id);
 	}
 
 	public handleClickEdit(): void {
-		console.log("Clicked Edit Button");
+		console.log("Clicked Edit Button", this.task.id);
 	}
 
 	public handleClickDelete(): void {
-		console.log("Clicked Delete Button");
+		console.log("Clicked Delete Button", this.task.id);
 	}
 
 }
