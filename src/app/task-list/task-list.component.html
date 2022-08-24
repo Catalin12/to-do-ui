@@ -1,9 +1,13 @@
-<h1>In progress</h1>
-<div *ngFor="let task of taskList">
-	<task *ngIf="!task.isCompleted" [task]="task"></task>
+<div *ngIf="!areTasksCompleted">
+	<h1>In progress</h1>
+	<div *ngFor="let task of taskList">
+		<task *ngIf="!task.isCompleted" [task]="task"></task>
+	</div>
 </div>
 
-<h1>Done</h1>
-<div *ngFor="let task of taskList">
-	<task *ngIf="task.isCompleted" [task]="task"></task>
+<div *ngIf="areTasksCompleted">
+	<h1>Done</h1>
+	<div *ngFor="let task of taskList">
+		<task *ngIf="task.isCompleted" [task]="task"></task>
+	</div>
 </div>

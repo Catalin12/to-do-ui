@@ -1,1 +1,8 @@
-<p>home-page works!</p>
+<div *ngIf="isUserLoggedIn">
+	<nav-bar (showTasksInProgressEvent)="getShowTasksInProgressValue($event)"></nav-bar>
+	<task-list [areTasksCompleted]="areTasksCompleted"></task-list>
+</div>
+
+<div *ngIf="!isUserLoggedIn">
+	<login></login>
+</div>

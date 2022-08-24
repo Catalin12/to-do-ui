@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 import { TaskDTO } from "../shared/TaskDTO";
 
@@ -10,6 +10,9 @@ import { TaskDTO } from "../shared/TaskDTO";
 export class TaskListComponent implements OnInit {
 
 	public taskList: TaskDTO[];
+
+	@Input()
+	public areTasksCompleted?: boolean;
 
 	public constructor() {
 		this.taskList = [
