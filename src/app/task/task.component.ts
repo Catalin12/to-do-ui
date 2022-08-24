@@ -7,17 +7,14 @@ import { TaskDTO } from "../shared/TaskDTO";
 	templateUrl: "./task.component.html",
 	styleUrls: ["./task.component.css"]
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent {
 
 	@Input()
 	public task: TaskDTO = {};
+
 	public areTaskDetailsShown: boolean = false;
 
 	public constructor() {
-	}
-
-	public ngOnInit(): void {
-		console.log("Init TaskComponent");
 	}
 
 	public handleClickStatus(): void {
