@@ -1,21 +1,15 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
 	selector: "home-page",
 	templateUrl: "./home-page.component.html",
 	styleUrls: ["./home-page.component.css"]
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent {
 
 	public isUserLoggedIn: boolean = true;
 
 	public areTasksCompleted?: boolean;
-
-	public constructor() { }
-
-	public ngOnInit(): void {
-		console.log("home page work!");
-	}
 
 	public getShowTasksInProgressValue(value: boolean): void {
 		this.areTasksCompleted = !value;
