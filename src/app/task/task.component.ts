@@ -10,7 +10,7 @@ import { TaskDTO } from "../shared/TaskDTO";
 export class TaskComponent implements OnInit {
 
 	public taskTest: TaskDTO;
-	public showTaskDetails: boolean = false;
+	public areTaskDetailsShown: boolean = false;
 
 	public constructor() {
 		this.taskTest = {
