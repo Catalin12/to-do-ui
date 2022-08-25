@@ -1,6 +1,6 @@
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
 
-	<span class="p-float-label" style="margin-bottom:15px">
+	<span class="p-float-label" style="margin-bottom:15px;">
 		<input type="text" id="title" formControlName="title" pInputText>
 		<label for="title">Task Title</label>
 	</span>
@@ -9,7 +9,7 @@
 		<input type="text" id="description" formControlName="description" pInputText>
 		<label for="description">Task Description</label>
 	</span>
-	<button pButton type="submit" class="p-button-success" style="margin:5px"
+	<button pButton type="submit" class="p-button-success" style="margin:5px;"
 		[disabled]="!taskForm.valid">Submit</button>
 
 </form>

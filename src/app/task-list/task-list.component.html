@@ -1,3 +1,5 @@
+<button pButton type="button" label="New Task" class="p-button-success" (click)="handleTaskForm()"></button>
+
 <div *ngIf="!isFilterActive">
 	<h1>Tasks</h1>
 	<div *ngFor="let task of taskList">
