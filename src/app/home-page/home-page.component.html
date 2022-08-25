@@ -3,6 +3,6 @@
 </div>
 
 <div *ngIf="isUserLoggedIn">
-	<nav-bar (activeFilterEvent)="getFilterStatus($event)"></nav-bar>
+	<nav-bar (onListFilter)="handleListFilter($event)"></nav-bar>
 	<task-list [isFilterActive]="isFilterActive"></task-list>
 </div>

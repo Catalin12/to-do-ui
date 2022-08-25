@@ -12,7 +12,7 @@ export class TaskListComponent implements OnInit {
 	public taskList: TaskDTO[];
 
 	@Input()
-	public isFilterActive?: boolean;
+	public isFilterActive: boolean = false;
 
 	public constructor() {
 		this.taskList = [

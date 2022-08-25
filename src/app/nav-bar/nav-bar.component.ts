@@ -9,19 +9,19 @@ import { Router } from "@angular/router";
 export class NavBarComponent {
 
 	@Output()
-	public activeFilterEvent = new EventEmitter<boolean>();
+	public onListFilter = new EventEmitter<boolean>();
 
 	public isFilterActive: boolean = false;
 
 	public constructor(private router: Router) {
 	}
 
-	public handleFilterTasks(): void {
+	public handleFilterButtonClick(): void {
 		console.log(this.isFilterActive);
-		this.activeFilterEvent.emit(this.isFilterActive);
+		this.onListFilter.emit(this.isFilterActive);
 	}
 
-	public handleLogout(): void {
+	public handleLogoutButtonClick(): void {
 		//TODO when api authentication ready, also delete token form localstorage
 		this.router.navigate(["login"]);
 	}

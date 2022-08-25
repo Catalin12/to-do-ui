@@ -9,9 +9,9 @@ export class HomePageComponent {
 
 	public isUserLoggedIn: boolean = true;
 
-	public isFilterActive?: boolean;
+	public isFilterActive: boolean = false;
 
-	public getFilterStatus(value: boolean): void {
+	public handleListFilter(value: boolean): void {
 		this.isFilterActive = value;
 	}
 }

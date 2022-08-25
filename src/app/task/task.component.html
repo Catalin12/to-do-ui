@@ -1,4 +1,4 @@
-<p-card header={{task.title}} (mouseenter)="areTaskDetailsShown=true" (mouseleave)="areTaskDetailsShown=false" [ngClass]="{'strikethrough': task.isCompleted }">
+<p-card header={{task.title}} (mouseenter)="areTaskDetailsShown=true" (mouseleave)="areTaskDetailsShown=false" [class.strikethrough]="task.isCompleted">
 	<p>{{task.description}}</p>
 	<div *ngIf="areTaskDetailsShown">
 		<div>
