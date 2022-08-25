@@ -5,8 +5,7 @@ import { TaskDTO } from "../shared/TaskDTO";
 @Component({
 	selector: "task",
 	templateUrl: "./task.component.html",
-	styleUrls: ["./task.component.css"],
-	encapsulation: ViewEncapsulation.None
+	styleUrls: ["./task.component.css"]
 })
 export class TaskComponent {
 
