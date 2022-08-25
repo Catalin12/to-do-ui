@@ -1,5 +1,13 @@
-<p-menubar [model]="items">
+<p-menubar>
     <div>
+		<p-toggleButton [(ngModel)]="isFilterActive"
+			(click)="handleFilterTasks()"
+			[onIcon]="'pi pi-align-justify'" 
+			[offIcon]="'pi pi-sort-alt'"
+			[onLabel]="'See default list'"
+			[offLabel]="'Sort tasks by status'"
+			[iconPos]="'left'">
+		</p-toggleButton>
         <button type="button" pButton label="Logout" icon="pi pi-sign-out" (click)="handleLogout()" style="margin-left:.25em"></button>
     </div>
 </p-menubar>

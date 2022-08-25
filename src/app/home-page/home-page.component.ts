@@ -9,9 +9,9 @@ export class HomePageComponent {
 
 	public isUserLoggedIn: boolean = true;
 
-	public areTasksCompleted?: boolean;
+	public isFilterActive?: boolean;
 
-	public getShowTasksInProgressValue(value: boolean): void {
-		this.areTasksCompleted = !value;
+	public getFilterStatus(value: boolean): void {
+		this.isFilterActive = value;
 	}
 }

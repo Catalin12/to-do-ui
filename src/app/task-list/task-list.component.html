@@ -1,12 +1,17 @@
-<div *ngIf="!areTasksCompleted">
-	<h1>In progress</h1>
+<div *ngIf="!isFilterActive">
+	<h1>Tasks</h1>
 	<div *ngFor="let task of taskList">
-		<task *ngIf="!task.isCompleted" [task]="task"></task>
+		<task [task]="task"></task>
 	</div>
 </div>
 
-<div *ngIf="areTasksCompleted">
-	<h1>Done</h1>
+<div *ngIf="isFilterActive">
+	<h1>Tasks</h1>
+	<h2>In progress</h2>
+	<div *ngFor="let task of taskList">
+		<task *ngIf="!task.isCompleted" [task]="task"></task>
+	</div>
+	<h2>Completed</h2>
 	<div *ngFor="let task of taskList">
 		<task *ngIf="task.isCompleted" [task]="task"></task>
 	</div>

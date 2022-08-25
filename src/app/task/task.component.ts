@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, ViewEncapsulation } from "@angular/core";
 
 import { TaskDTO } from "../shared/TaskDTO";
 
 @Component({
 	selector: "task",
 	templateUrl: "./task.component.html",
-	styleUrls: ["./task.component.css"]
+	styleUrls: ["./task.component.css"],
+	encapsulation: ViewEncapsulation.None
 })
 export class TaskComponent {
 

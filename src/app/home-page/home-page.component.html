@@ -1,8 +1,8 @@
-<div *ngIf="isUserLoggedIn">
-	<nav-bar (showTasksInProgressEvent)="getShowTasksInProgressValue($event)"></nav-bar>
-	<task-list [areTasksCompleted]="areTasksCompleted"></task-list>
+<div *ngIf="!isUserLoggedIn">
+	<a routerLink="/login"></a>
 </div>
 
-<div *ngIf="!isUserLoggedIn">
-	<login></login>
+<div *ngIf="isUserLoggedIn">
+	<nav-bar (activeFilterEvent)="getFilterStatus($event)"></nav-bar>
+	<task-list [isFilterActive]="isFilterActive"></task-list>
 </div>

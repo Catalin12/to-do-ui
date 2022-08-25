@@ -1,0 +1,7 @@
+.strikethrough .p-card .p-card-title {
+	text-decoration: line-through;
+}
+
+.strikethrough p {
+	text-decoration: line-through;
+}

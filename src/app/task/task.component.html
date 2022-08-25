@@ -1,4 +1,4 @@
-<p-card header={{task.title}} (mouseenter)="areTaskDetailsShown=true" (mouseleave)="areTaskDetailsShown=false">
+<p-card header={{task.title}} (mouseenter)="areTaskDetailsShown=true" (mouseleave)="areTaskDetailsShown=false" [ngClass]="{'strikethrough': task.isCompleted }">
 	<p>{{task.description}}</p>
 	<div *ngIf="areTaskDetailsShown">
 		<div>
@@ -11,7 +11,7 @@
 				[iconPos]="'right'"
 				class="p-button-danger">
 			</p-toggleButton>
-			<button pButton label="Edit" type="button" icon="pi pi-user-edit" [iconPos]="'right'" class="p-button-secondary" (click)="handleClickEdit()"></button>
+			<button pButton label="Edit" type="button" icon="pi pi-pencil" [iconPos]="'right'" class="p-button-secondary" (click)="handleClickEdit()"></button>
 			<button pButton label="Delete" type="button" icon="pi pi-trash" [iconPos]="'right'" class="p-button-danger" (click)="handleClickDelete()"></button>
 		</div>
 	</div>
