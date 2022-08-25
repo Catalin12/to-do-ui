@@ -5,11 +5,12 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { InputTextModule } from "primeng/inputtext";
 import { InputTextareaModule } from "primeng/inputtextarea";
-import { CardModule} from "primeng/card";
-import { ToggleButtonModule} from "primeng/togglebutton";
+import { CardModule } from "primeng/card";
+import { ToggleButtonModule } from "primeng/togglebutton";
 import { MenubarModule } from "primeng/menubar";
 import { DialogModule } from "primeng/dialog";
 import { ButtonModule } from "primeng/button";
+import { ToastModule } from "primeng/toast";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -21,6 +22,7 @@ import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
+import { MessageService } from "primeng/api";
 
 @NgModule({
 	declarations: [
@@ -44,12 +46,13 @@ import { NavBarComponent } from "./nav-bar/nav-bar.component";
 		ReactiveFormsModule,
 		CardModule,
 		ToggleButtonModule,
-    InputTextModule,
+		InputTextModule,
 		InputTextareaModule,
 		ButtonModule,
-		MenubarModule
+		MenubarModule,
+		ToastModule
 	],
-	providers: [],
+	providers: [MessageService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
