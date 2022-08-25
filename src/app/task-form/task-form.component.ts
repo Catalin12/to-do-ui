@@ -2,8 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 
-import { ClickTypeEnum } from "../shared/click-type.enum";
-
 @Component({
 	selector: "task-form",
 	templateUrl: "./task-form.component.html",
@@ -11,13 +9,10 @@ import { ClickTypeEnum } from "../shared/click-type.enum";
 })
 export class TaskFormComponent implements OnInit {
 
-	public clickType = this.dialogService;
-
 	public taskForm = this.formBuilder.group({
 		title: ["", Validators.required],
 		description: [""],
-		isCompleted: false,
-		clickType: ClickTypeEnum.NULL
+		isCompleted: false
 	});
 
 	public constructor(
@@ -33,8 +28,7 @@ export class TaskFormComponent implements OnInit {
 		this.taskForm.setValue({
 			title: "",
 			description: "",
-			isCompleted: false,
-			clickType: ClickTypeEnum.NULL
+			isCompleted: false
 		});
 	}
 

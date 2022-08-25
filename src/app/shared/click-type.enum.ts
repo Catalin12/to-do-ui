@@ -1,5 +1,4 @@
-export enum ClickTypeEnum {
+export enum FormTypeEnum {
 	EDIT = "Edit",
-	ADD = "Add",
-	NULL = "Null"
+	ADD = "Add"
 }

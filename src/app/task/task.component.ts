@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
-import { ClickTypeEnum } from "../shared/click-type.enum";
+import { FormTypeEnum } from "../shared/click-type.enum";
 
 import { TaskDTO } from "../shared/TaskDTO";
 import { TaskFormComponent } from "../task-form/task-form.component";
@@ -16,10 +16,10 @@ export class TaskComponent {
 	public task: TaskDTO = {};
 
 	@Output()
-	public changeStatus = new EventEmitter<number>();
+	public onChangeStatus = new EventEmitter<number>();
 
 	@Output()
-	public clickDelete = new EventEmitter<number>();
+	public onDelete = new EventEmitter<number>();
 
 	public areTaskDetailsShown: boolean = false;
 
@@ -32,14 +32,14 @@ export class TaskComponent {
 	}
 
 	public handleClickEdit(): void {
-		this.handleTaskForm(ClickTypeEnum.EDIT);
+		this.handleTaskForm(FormTypeEnum.EDIT);
 	}
 
 	public handleClickDelete(): void {
 		console.log("Clicked Delete Button", this.task.id);
 	}
 
-	public handleTaskForm(clickTypeParam: ClickTypeEnum): void {
+	public handleTaskForm(clickTypeParam: FormTypeEnum): void {
 		console.warn("handleTaskForm() was called.");
 		this.dialogService.open(TaskFormComponent, {
 			header: "Edit-Task",
