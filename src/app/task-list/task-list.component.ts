@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
 
 import { TaskDTO } from "../shared/TaskDTO";
@@ -13,6 +13,9 @@ import { TaskFormComponent } from "../task-form/task-form.component";
 export class TaskListComponent {
 
 	public taskList: TaskDTO[];
+
+	@Input()
+	public isFilterActive: boolean = false;
 
 	public constructor(
 		private dialogService: DialogService

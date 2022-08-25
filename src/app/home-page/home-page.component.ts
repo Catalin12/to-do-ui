@@ -5,4 +5,13 @@ import { Component } from "@angular/core";
 	templateUrl: "./home-page.component.html",
 	styleUrls: ["./home-page.component.css"]
 })
-export class HomePageComponent { }
+export class HomePageComponent {
+
+	public isUserLoggedIn: boolean = true;
+
+	public isFilterActive: boolean = false;
+
+	public handleListFilter(value: boolean): void {
+		this.isFilterActive = value;
+	}
+}
