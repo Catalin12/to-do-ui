@@ -9,6 +9,8 @@ import { DialogModule } from "primeng/dialog";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { InputTextModule } from "primeng/inputtext";
+import { InputTextareaModule } from "primeng/inputtextarea";
 
 import { HomePageComponent } from "./home-page/home-page.component";
 import { TaskFormComponent } from "./task-form/task-form.component";
@@ -33,7 +35,8 @@ import { TaskListComponent } from "./task-list/task-list.component";
 		ReactiveFormsModule,
 		CardModule,
 		ToggleButtonModule,
-		ButtonModule
+		InputTextModule,
+		InputTextareaModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
