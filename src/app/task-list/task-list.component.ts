@@ -14,7 +14,9 @@ import { TaskFormComponent } from "../task-form/task-form.component";
 })
 export class TaskListComponent implements OnInit {
 
-	public taskList?: TaskDTO[];
+	public taskDTOs?: TaskDTO[];
+	public completedTaskDTOs?: TaskDTO[];
+	public inProgressTaskDTOs?: TaskDTO[];
 
 	@Input()
 	public isFilterActive: boolean = false;
@@ -26,12 +28,15 @@ export class TaskListComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.apiService.getAllTasks().subscribe(
-			(tasks) => this.taskList = tasks
+			(tasks) => {
+				this.taskDTOs = tasks;
+				this.completedTaskDTOs = this.taskDTOs.filter(task => task.isCompleted);
+				this.inProgressTaskDTOs = this.taskDTOs.filter(task => !task.isCompleted);
+			}
 		);
 	}
 
 	public handleTaskForm(): void {
-		console.warn("handleTaskForm() was called.");
 		this.dialogService.open(TaskFormComponent, {
 			header: FormTypeEnum.ADD,
 			height: "40%",
