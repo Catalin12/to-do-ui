@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
 import { ApiService } from "../shared/api.service";
+import { FormTypeEnum } from "../shared/click-type.enum";
 
 import { TaskDTO } from "../shared/TaskDTO";
 import { TaskFormComponent } from "../task-form/task-form.component";
@@ -51,12 +52,14 @@ export class TaskListComponent implements OnInit {
 	public handleTaskForm(): void {
 		console.warn("handleTaskForm() was called.");
 		this.dialogService.open(TaskFormComponent, {
+			header: FormTypeEnum.ADD,
 			height: "40%",
 			width: "40%",
 			data: {
-				title: "",
-				description: "",
+				title: "title-test",
+				description: "description-test",
 				isCompleted: false,
+				clickType: FormTypeEnum.ADD
 			}
 		});
 	}
