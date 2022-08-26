@@ -30,11 +30,11 @@ export class ApiService {
 
 	public changeTaskStatus(id: number): Observable<TaskDTO> {
 		const changeTaskStatusUrl = this.apiURL + "/new-status/" + id;
-		return this.http.patch(changeTaskStatusUrl, id);
+		return this.http.patch(changeTaskStatusUrl, {id});
 	}
 
 	public deleteTask(id: number): Observable<TaskDTO> {
 		const deleteTaskUrl = this.apiURL + "/delete/" + id;
-		return this.http.patch(deleteTaskUrl, id);
+		return this.http.patch(deleteTaskUrl, {id});
 	}
 }

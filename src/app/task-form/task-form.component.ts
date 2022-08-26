@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+import { ApiService } from "../shared/api.service";
+import { TaskDTO } from "../shared/TaskDTO";
 
 @Component({
 	selector: "task-form",
@@ -17,7 +19,8 @@ export class TaskFormComponent implements OnInit {
 
 	public constructor(
 		private formBuilder: FormBuilder,
-		private dialogService: DynamicDialogConfig
+		private dialogService: DynamicDialogConfig,
+		private apiService: ApiService
 	) { }
 
 	public onSubmit(): void {
