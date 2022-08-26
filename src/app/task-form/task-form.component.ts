@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { ApiService } from "../shared/api.service";
+import { FormTypeEnum } from "../shared/click-type.enum";
 import { TaskDTO } from "../shared/TaskDTO";
 
 @Component({
@@ -19,20 +20,36 @@ export class TaskFormComponent implements OnInit {
 
 	public constructor(
 		private formBuilder: FormBuilder,
-		private dialogService: DynamicDialogConfig,
+		private dialogConfig: DynamicDialogConfig,
 		private apiService: ApiService
 	) { }
 
 	public onSubmit(): void {
-		console.warn(`debug clickType ${this.dialogService.data.clickType}, task id ${this.dialogService.data.id}`);
+		const task: TaskDTO = {
+			id: this.dialogConfig.data.id ?? null,
+			title: this.taskForm.value.title ?? "",
+			description: this.taskForm.value.description ?? "",
+			isCompleted: this.taskForm.value.isCompleted ?? false,
+			isDeleted: false,
+			//TODO userId: this.dialogConfig.data.userId
+		};
+		switch(this.dialogConfig.data.clickType){
+			case FormTypeEnum.ADD: {
+				this.apiService.addTask(task).subscribe();
+				break;
+			}
+			case FormTypeEnum.EDIT: {
+				this.apiService.editTask(task).subscribe();
+				break;
+			}
+		}
 	}
 
 	public ngOnInit(): void {
 		this.taskForm.setValue({
-			title: "",
-			description: "",
-			isCompleted: false
+			title: this.dialogConfig.data.title,
+			description: this.dialogConfig.data.description,
+			isCompleted: this.dialogConfig.data.isCompleted
 		});
 	}
-
 }

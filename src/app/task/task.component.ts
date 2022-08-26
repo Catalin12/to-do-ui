@@ -52,7 +52,6 @@ export class TaskComponent {
 	}
 
 	public handleTaskForm(clickTypeParam: FormTypeEnum): void {
-		console.warn("handleTaskForm() was called.");
 		this.dialogService.open(TaskFormComponent, {
 			header: "Edit-Task",
 			height: "40%",
