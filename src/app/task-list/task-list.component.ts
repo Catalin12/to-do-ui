@@ -1,5 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
+import { ApiService } from "../shared/api.service";
 
 import { TaskDTO } from "../shared/TaskDTO";
 import { TaskFormComponent } from "../task-form/task-form.component";
@@ -10,7 +11,7 @@ import { TaskFormComponent } from "../task-form/task-form.component";
 	styleUrls: ["./task-list.component.css"],
 	providers: [DialogService]
 })
-export class TaskListComponent {
+export class TaskListComponent implements OnInit {
 
 	public taskList: TaskDTO[];
 
@@ -18,7 +19,8 @@ export class TaskListComponent {
 	public isFilterActive: boolean = false;
 
 	public constructor(
-		private dialogService: DialogService
+		private dialogService: DialogService,
+		private apiService: ApiService
 	) {
 		this.taskList = [
 			{
@@ -40,11 +42,17 @@ export class TaskListComponent {
 		];
 	}
 
+	public ngOnInit(): void {
+		this.apiService.getAllTasks().subscribe(
+			(tasks) => this.taskList = tasks
+		);
+	}
+
 	public handleTaskForm(): void {
 		console.warn("handleTaskForm() was called.");
 		this.dialogService.open(TaskFormComponent, {
 			height: "40%",
-			width: "20%",
+			width: "40%",
 			data: {
 				title: "",
 				description: "",

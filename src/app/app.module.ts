@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule } from "@angular/common/http";
 import { CardModule} from "primeng/card";
 import { ToggleButtonModule} from "primeng/togglebutton";
 import { MenubarModule } from "primeng/menubar";
@@ -43,7 +44,8 @@ import { NavBarComponent } from "./nav-bar/nav-bar.component";
 		CardModule,
 		ToggleButtonModule,
 		ButtonModule,
-		MenubarModule
+		MenubarModule,
+		HttpClientModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
