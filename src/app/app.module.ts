@@ -44,7 +44,7 @@ import { NavBarComponent } from "./nav-bar/nav-bar.component";
 		ReactiveFormsModule,
 		CardModule,
 		ToggleButtonModule,
-    InputTextModule,
+    	InputTextModule,
 		InputTextareaModule,
 		ButtonModule,
 		MenubarModule
