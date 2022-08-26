@@ -46,7 +46,7 @@ import { MessageService } from "primeng/api";
 		ReactiveFormsModule,
 		CardModule,
 		ToggleButtonModule,
-		InputTextModule,
+    InputTextModule,
 		InputTextareaModule,
 		ButtonModule,
 		MenubarModule,
