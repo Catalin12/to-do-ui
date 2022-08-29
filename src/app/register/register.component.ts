@@ -1,15 +1,35 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { RegisterDTO } from "../shared/RegisterDTO";
 
 @Component({
 	selector: "register",
 	templateUrl: "./register.component.html",
 	styleUrls: ["./register.component.css"]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
-	public constructor() { }
+	public registerDTO: RegisterDTO = {
+		email: "",
+		password: ""
+	};
 
-	public ngOnInit(): void {
+	public registerForm = this.formBuilder.group({
+		email: new FormControl(this.registerDTO.email, [
+			Validators.required,
+			Validators.email
+		]),
+		password: new FormControl(this.registerDTO.password, [
+			Validators.required,
+			Validators.minLength(8)
+		])
+	});
+
+	public constructor(
+		private formBuilder: FormBuilder
+	) { }
+
+	public handleClickRegister(): void {
+		console.log(this.registerForm.get("email")?.value, this.registerForm.get("password")?.value);
 	}
-
 }
