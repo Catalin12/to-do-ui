@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { LoginDTO } from "../shared/LoginDTO";
+
+import { LoginDTO } from "../shared/login.dto";
 
 @Component({
 	selector: "login",

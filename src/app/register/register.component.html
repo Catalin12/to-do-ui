@@ -5,9 +5,26 @@
 				<input type="email" pInputText placeholder="Email" formControlName="email">      
 			</div>
 		</div>
+		<div *ngIf="email.invalid" class="alert-danger">
+			<div *ngIf="email.errors?.['required']">
+				Email is required.
+			</div>
+			<div *ngIf="email.errors?.['email']">
+				Email must be "[...]@[...]".
+			</div>
+		</div>
+
 		<div class="col-12">
 			<div class="p-inputgroup">
 				<input type="password" pInputText placeholder="Password" formControlName="password">  
+			</div>
+		</div>
+		<div *ngIf="password.invalid" class="alert-danger">
+			<div *ngIf="password.errors?.['required']">
+				Password is required.
+			</div>
+			<div *ngIf="email.errors?.['email']">
+				Password must have a minimum length of 8.
 			</div>
 		</div>
 	

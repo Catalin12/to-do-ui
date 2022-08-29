@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { RegisterDTO } from "../shared/RegisterDTO";
+
+import { RegisterDTO } from "../shared/register.dto";
 
 @Component({
 	selector: "register",
@@ -31,5 +32,13 @@ export class RegisterComponent {
 
 	public handleClickRegister(): void {
 		console.log(this.registerForm.get("email")?.value, this.registerForm.get("password")?.value);
+	}
+
+	public get email(): any {
+		return this.registerForm.get("email");
+	}
+
+	public get password(): any {
+		return this.registerForm.get("password");
 	}
 }
