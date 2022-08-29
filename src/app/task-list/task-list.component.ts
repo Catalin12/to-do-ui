@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
-import { ApiService } from "../shared/api.service";
-import { FormTypeEnum } from "../shared/click-type.enum";
 
-import { TaskDTO } from "../shared/TaskDTO";
+import { ApiService } from "../shared/api.service";
+import { FormTypeEnum } from "../shared/form-type.enum";
+import { TaskDTO } from "../shared/task.dto";
 import { TaskFormComponent } from "../task-form/task-form.component";
 
 @Component({

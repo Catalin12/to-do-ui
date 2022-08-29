@@ -17,7 +17,6 @@ export class NavBarComponent {
 	}
 
 	public handleFilterButtonClick(): void {
-		console.log(this.isFilterActive);
 		this.onListFilter.emit(this.isFilterActive);
 	}
 

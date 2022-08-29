@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
+
 import { ApiService } from "../shared/api.service";
-import { FormTypeEnum } from "../shared/click-type.enum";
-import { TaskDTO } from "../shared/TaskDTO";
+import { FormTypeEnum } from "../shared/form-type.enum";
+import { TaskDTO } from "../shared/task.dto";
 
 @Component({
 	selector: "task-form",
@@ -33,13 +34,13 @@ export class TaskFormComponent implements OnInit {
 			isDeleted: false,
 			//TODO userId: this.dialogConfig.data.userId
 		};
-		switch(this.dialogConfig.data.clickType){
+		switch (this.dialogConfig.data.clickType) {
 			case FormTypeEnum.ADD: {
-				this.apiService.addTask(task).subscribe();
+				this.addTask(task);
 				break;
 			}
 			case FormTypeEnum.EDIT: {
-				this.apiService.editTask(task).subscribe();
+				this.editTask(task);
 				break;
 			}
 		}
@@ -51,5 +52,13 @@ export class TaskFormComponent implements OnInit {
 			description: this.dialogConfig.data.description,
 			isCompleted: this.dialogConfig.data.isCompleted
 		});
+	}
+
+	private addTask(task: TaskDTO): void {
+		this.apiService.addTask(task).subscribe();
+	}
+
+	private editTask(task: TaskDTO): void {
+		this.apiService.editTask(task).subscribe();
 	}
 }

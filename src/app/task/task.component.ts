@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
-import { ApiService } from "../shared/api.service";
-import { FormTypeEnum } from "../shared/click-type.enum";
 
-import { TaskDTO } from "../shared/TaskDTO";
+import { ApiService } from "../shared/api.service";
+import { FormTypeEnum } from "../shared/form-type.enum";
+import { TaskDTO } from "../shared/task.dto";
 import { TaskFormComponent } from "../task-form/task-form.component";
 
 @Component({
@@ -30,10 +30,10 @@ export class TaskComponent {
 	) { }
 
 	public handleClickStatus(): void {
-		if(this.task.id) {
-			let updatedStatus: TaskDTO = {};
+		if (this.task.id) {
+			let updatedTaskDTO: TaskDTO = {};
 			this.apiService.changeTaskStatus(this.task.id).subscribe(
-				(response) => updatedStatus = response
+				(response) => updatedTaskDTO = response
 			);
 		}
 	}
@@ -43,10 +43,10 @@ export class TaskComponent {
 	}
 
 	public handleClickDelete(): void {
-		if(this.task.id) {
-			let deletedTask: TaskDTO = {};
+		if (this.task.id) {
+			let deletedTaskDTO: TaskDTO = {};
 			this.apiService.deleteTask(this.task.id).subscribe(
-				(response) => deletedTask = response
+				(response) => deletedTaskDTO = response
 			);
 		}
 	}
