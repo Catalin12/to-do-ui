@@ -1,8 +1,9 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
-import { FormTypeEnum } from "../shared/click-type.enum";
 
-import { TaskDTO } from "../shared/TaskDTO";
+import { ApiService } from "../shared/api.service";
+import { FormTypeEnum } from "../shared/form-type.enum";
+import { TaskDTO } from "../shared/task.dto";
 import { TaskFormComponent } from "../task-form/task-form.component";
 
 @Component({
@@ -11,45 +12,38 @@ import { TaskFormComponent } from "../task-form/task-form.component";
 	styleUrls: ["./task-list.component.css"],
 	providers: [DialogService]
 })
-export class TaskListComponent {
+export class TaskListComponent implements OnInit {
 
-	public taskList: TaskDTO[];
+	public taskDTOs?: TaskDTO[];
+	public completedTaskDTOs?: TaskDTO[];
+	public inProgressTaskDTOs?: TaskDTO[];
 
 	@Input()
 	public isFilterActive: boolean = false;
 
 	public constructor(
-		private dialogService: DialogService
-	) {
-		this.taskList = [
-			{
-				id: 1,
-				title: "Title",
-				description: "Description",
-				isCompleted: false,
-				isDeleted: false,
-				userId: 1
-			},
-			{
-				id: 2,
-				title: "Title 2",
-				description: "Description 2",
-				isCompleted: false,
-				isDeleted: false,
-				userId: 1
+		private dialogService: DialogService,
+		private apiService: ApiService
+	) {}
+
+	public ngOnInit(): void {
+		this.apiService.getAllTasks().subscribe(
+			(tasks) => {
+				this.taskDTOs = tasks;
+				this.completedTaskDTOs = this.taskDTOs.filter(task => task.isCompleted);
+				this.inProgressTaskDTOs = this.taskDTOs.filter(task => !task.isCompleted);
 			}
-		];
+		);
 	}
 
 	public handleTaskForm(): void {
-		console.warn("handleTaskForm() was called.");
 		this.dialogService.open(TaskFormComponent, {
 			header: FormTypeEnum.ADD,
 			height: "40%",
 			width: "40%",
 			data: {
-				title: "title-test",
-				description: "description-test",
+				title: "",
+				description: "",
 				isCompleted: false,
 				clickType: FormTypeEnum.ADD
 			}

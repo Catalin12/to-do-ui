@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule } from "@angular/common/http";
 import { InputTextModule } from "primeng/inputtext";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { CardModule} from "primeng/card";
@@ -44,10 +45,11 @@ import { NavBarComponent } from "./nav-bar/nav-bar.component";
 		ReactiveFormsModule,
 		CardModule,
 		ToggleButtonModule,
-    	InputTextModule,
+		InputTextModule,
 		InputTextareaModule,
 		ButtonModule,
-		MenubarModule
+		MenubarModule,
+		HttpClientModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
