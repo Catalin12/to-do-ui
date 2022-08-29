@@ -31,7 +31,7 @@ export class RegisterComponent {
 	public constructor(
 		private formBuilder: FormBuilder,
 		private authService: AuthService,
-		private router: Router,
+		private router: Router
 	) { }
 
 	public handleClickRegister(): void {
