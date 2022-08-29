@@ -40,16 +40,17 @@ export class LoginComponent {
 			password: this.loginForm.get("password")?.value ?? ""
 		};
 		this.authService.login(this.loginDTO).subscribe({
-			next: (response) => {
+			next: (token) => {
 				//TODO add toast with succesful response
+				//TODO save token in local storage
+				console.log(token);
 				this.router.navigate(["/"]);
 			},
 			error: (error) => {
 				//TODO add toast with error message
 				console.log(error);
 			}
-		}
-		);
+		});
 	}
 
 	public get email(): any {
