@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
+import { AuthService } from "../shared/auth.service";
 import { LoginDTO } from "../shared/login.dto";
 
 @Component({
@@ -27,11 +29,27 @@ export class LoginComponent {
 	});
 
 	public constructor(
-		private formBuilder: FormBuilder
+		private formBuilder: FormBuilder,
+		private authService: AuthService,
+		private router: Router
 	) { }
 
 	public handleClickLogin(): void {
-		console.log(this.loginForm.get("email")?.value, this.loginForm.get("password")?.value);
+		this.loginDTO = {
+			email: this.loginForm.get("email")?.value ?? "",
+			password: this.loginForm.get("password")?.value ?? ""
+		};
+		this.authService.login(this.loginDTO).subscribe({
+			next: (response) => {
+				//TODO add toast with succesful response
+				this.router.navigate(["/"]);
+			},
+			error: (error) => {
+				//TODO add toast with error message
+				console.log(error);
+			}
+		}
+		);
 	}
 
 	public get email(): any {
@@ -41,5 +59,4 @@ export class LoginComponent {
 	public get password(): any {
 		return this.loginForm.get("password");
 	}
-
 }

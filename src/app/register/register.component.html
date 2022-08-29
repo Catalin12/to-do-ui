@@ -30,4 +30,8 @@
 	
 		<button pButton label="Sign up" type="submit" class="p-button-primary register_button" (click)="handleClickRegister()" [disabled]="!registerForm.valid"></button>
 	</form>
+
+	<ng-template pTemplate="footer">
+		<a routerLink="/login">Already have an account? Log in</a>
+    </ng-template>
 </p-card>

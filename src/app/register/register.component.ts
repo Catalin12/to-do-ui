@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
+import { AuthService } from "../shared/auth.service";
 import { RegisterDTO } from "../shared/register.dto";
 
 @Component({
@@ -27,11 +29,26 @@ export class RegisterComponent {
 	});
 
 	public constructor(
-		private formBuilder: FormBuilder
+		private formBuilder: FormBuilder,
+		private authService: AuthService,
+		private router: Router,
 	) { }
 
 	public handleClickRegister(): void {
-		console.log(this.registerForm.get("email")?.value, this.registerForm.get("password")?.value);
+		this.registerDTO = {
+			email: this.registerForm.get("email")?.value ?? "",
+			password: this.registerForm.get("password")?.value ?? ""
+		};
+		this.authService.register(this.registerDTO).subscribe({
+			next: (response) => {
+				//TODO add toast with succesful response
+				this.router.navigate(["/login"]);
+			},
+			error: (error) => {
+				//TODO add toast with error
+				console.log(error.message);
+			}
+		});
 	}
 
 	public get email(): any {
