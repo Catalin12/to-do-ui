@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { Router } from "@angular/router";
+import { LocalStorageService } from "../shared/local-storage.service";
 
 @Component({
 	selector: "nav-bar",
@@ -13,15 +14,17 @@ export class NavBarComponent {
 
 	public isFilterActive: boolean = false;
 
-	public constructor(private router: Router) {
-	}
+	public constructor(
+		private router: Router,
+		private localStorageService: LocalStorageService
+	) {}
 
 	public handleFilterButtonClick(): void {
 		this.onListFilter.emit(this.isFilterActive);
 	}
 
 	public handleLogoutButtonClick(): void {
-		//TODO when api authentication ready, also delete token form localstorage
+		this.localStorageService.removeToken();
 		this.router.navigate(["login"]);
 	}
 }

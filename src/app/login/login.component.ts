@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { AuthService } from "../shared/auth.service";
+import { LocalStorageService } from "../shared/local-storage.service";
 import { LoginDTO } from "../shared/login.dto";
 
 @Component({
@@ -31,7 +32,8 @@ export class LoginComponent {
 	public constructor(
 		private formBuilder: FormBuilder,
 		private authService: AuthService,
-		private router: Router
+		private router: Router,
+		private localStorageService: LocalStorageService
 	) { }
 
 	public handleClickLogin(): void {
@@ -42,8 +44,7 @@ export class LoginComponent {
 		this.authService.login(this.loginDTO).subscribe({
 			next: (token) => {
 				//TODO add toast with succesful response
-				//TODO save token in local storage
-				console.log(token);
+				this.localStorageService.addToken(token);
 				this.router.navigate(["/"]);
 			},
 			error: (error) => {
