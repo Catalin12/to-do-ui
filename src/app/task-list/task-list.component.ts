@@ -14,7 +14,7 @@ import { TaskFormComponent } from "../task-form/task-form.component";
 	styleUrls: ["./task-list.component.css"],
 	providers: [DialogService]
 })
-export class TaskListComponent implements OnInit, OnDestroy {
+export class TaskListComponent implements OnDestroy {
 
 	public taskDTOs?: TaskDTO[];
 	public completedTaskDTOs?: TaskDTO[];
@@ -29,14 +29,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
 		private dialogService: DialogService,
 		private apiService: ApiService,
 		private eventService: EventService
-	) {}
-
-	public ngOnInit(): void {
-		this.getTasks();
+	) {
+		this.prepareTasks();
 		this.handleEvents();
 	}
 
-	public getTasks(): void {
+	private prepareTasks(): void {
 		this.apiService.getAllTasks().subscribe(
 			(tasks) => {
 				this.taskDTOs = tasks;
@@ -46,19 +44,19 @@ export class TaskListComponent implements OnInit, OnDestroy {
 		);
 	}
 
-	public handleEvents(): void {
+	private handleEvents(): void {
 		this.subscriptionIds.push(this.eventService.subscribe(EventTypeEnum.ADD_TASK, () => {
-			this.getTasks();
+			this.prepareTasks();
 			this.dynamicDialogRef?.close();
 		}));
 		this.subscriptionIds.push(this.eventService.subscribe(EventTypeEnum.EDIT_TASK, () => {
-			this.getTasks();
+			this.prepareTasks();
 		}));
 		this.subscriptionIds.push(this.eventService.subscribe(EventTypeEnum.DELETE_TASK, () => {
-			this.getTasks();
+			this.prepareTasks();
 		}));
 		this.subscriptionIds.push(this.eventService.subscribe(EventTypeEnum.UPDATE_STATUS_TASK, () => {
-			this.getTasks();
+			this.prepareTasks();
 		}));
 	}
 
