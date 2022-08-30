@@ -36,8 +36,7 @@ export class TaskFormComponent implements OnInit {
 			title: this.taskForm.value.title ?? "",
 			description: this.taskForm.value.description ?? "",
 			isCompleted: this.taskForm.value.isCompleted ?? false,
-			isDeleted: false,
-			userId: this.dialogConfig.data.userId
+			isDeleted: false
 		};
 		switch (this.dialogConfig.data.clickType) {
 			case FormTypeEnum.ADD: {
@@ -74,7 +73,7 @@ export class TaskFormComponent implements OnInit {
 					severity: "error",
 					summary: "Error! Task could not be added",
 					detail: error.status + " " + error.statusText
-				})
+				});
 			}
 		});
 	}

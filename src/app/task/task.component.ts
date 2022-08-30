@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 
 import { ApiService } from "../shared/api.service";
@@ -29,7 +30,8 @@ export class TaskComponent {
 	public constructor(
 		private dialogService: DialogService,
 		private apiService: ApiService,
-		private eventService: EventService
+		private eventService: EventService,
+		private messageService: MessageService
 	) { }
 
 	public handleClickStatus(): void {
@@ -38,7 +40,20 @@ export class TaskComponent {
 			this.apiService.changeTaskStatus(this.task.id).subscribe({
 				next: (response) => {
 					updatedTaskDTO = response;
+					const messageDetail: string = updatedTaskDTO.isCompleted ? "completed" : "in progress";
 					this.eventService.emit(EventTypeEnum.UPDATE_STATUS_TASK);
+					this.messageService.add({
+						severity: "success",
+						summary: "Success!",
+						detail: "Task with title: '" + response.title + "' was marked as " + messageDetail
+					});
+				},
+				error: (error) => {
+					this.messageService.add({
+						severity: "error",
+						summary: "Error! Task could not be updated",
+						detail: error.status + " " + error.statusText
+					});
 				}
 			});
 		}
@@ -55,6 +70,18 @@ export class TaskComponent {
 				next: (response) => {
 					deletedTaskDTO = response;
 					this.eventService.emit(EventTypeEnum.DELETE_TASK);
+					this.messageService.add({
+						severity: "success",
+						summary: "Success! Task was deleted",
+						detail: "Title: " + response.title
+					});
+				},
+				error: (error) => {
+					this.messageService.add({
+						severity: "error",
+						summary: "Error! Task could not be deleted",
+						detail: error.status + " " + error.statusText
+					});
 				}
 			});
 		}
@@ -75,5 +102,4 @@ export class TaskComponent {
 			}
 		});
 	}
-
 }
