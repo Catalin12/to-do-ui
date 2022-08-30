@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
 
 import { ApiService } from "../shared/api.service";
+import { EventTypeEnum } from "../shared/event-type.enum";
+import { EventService } from "../shared/event.service";
 import { FormTypeEnum } from "../shared/form-type.enum";
 import { TaskDTO } from "../shared/task.dto";
 import { TaskFormComponent } from "../task-form/task-form.component";
@@ -26,15 +28,19 @@ export class TaskComponent {
 
 	public constructor(
 		private dialogService: DialogService,
-		private apiService: ApiService
+		private apiService: ApiService,
+		private eventService: EventService
 	) { }
 
 	public handleClickStatus(): void {
 		if (this.task.id) {
 			let updatedTaskDTO: TaskDTO = {};
-			this.apiService.changeTaskStatus(this.task.id).subscribe(
-				(response) => updatedTaskDTO = response
-			);
+			this.apiService.changeTaskStatus(this.task.id).subscribe({
+				next: (response) => {
+					updatedTaskDTO = response;
+					this.eventService.emit(EventTypeEnum.UPDATE_STATUS_TASK);
+				}
+			});
 		}
 	}
 
@@ -45,9 +51,12 @@ export class TaskComponent {
 	public handleClickDelete(): void {
 		if (this.task.id) {
 			let deletedTaskDTO: TaskDTO = {};
-			this.apiService.deleteTask(this.task.id).subscribe(
-				(response) => deletedTaskDTO = response
-			);
+			this.apiService.deleteTask(this.task.id).subscribe({
+				next: (response) => {
+					deletedTaskDTO = response;
+					this.eventService.emit(EventTypeEnum.DELETE_TASK);
+				}
+			});
 		}
 	}
 
@@ -61,6 +70,7 @@ export class TaskComponent {
 				title: this.task.title,
 				description: this.task.description,
 				isCompleted: this.task.isCompleted,
+				userId: this.task.userId,
 				clickType: clickTypeParam
 			}
 		});

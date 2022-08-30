@@ -5,3 +5,7 @@
 :host ::ng-deep .strikethrough .p-card .p-card-title {
 	text-decoration: line-through;
 }
+
+:host ::ng-deep .strikethrough .p-card .p-card-body {
+	background: lightgray;
+}

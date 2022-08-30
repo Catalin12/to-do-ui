@@ -4,6 +4,8 @@ import { DynamicDialogConfig } from "primeng/dynamicdialog";
 import { MessageService } from "primeng/api";
 
 import { ApiService } from "../shared/api.service";
+import { EventTypeEnum } from "../shared/event-type.enum";
+import { EventService } from "../shared/event.service";
 import { FormTypeEnum } from "../shared/form-type.enum";
 import { TaskDTO } from "../shared/task.dto";
 
@@ -24,7 +26,8 @@ export class TaskFormComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private dialogConfig: DynamicDialogConfig,
 		private apiService: ApiService,
-		private messageService: MessageService
+		private messageService: MessageService,
+		private eventService: EventService
 	) { }
 
 	public onSubmit(): void {
@@ -34,7 +37,7 @@ export class TaskFormComponent implements OnInit {
 			description: this.taskForm.value.description ?? "",
 			isCompleted: this.taskForm.value.isCompleted ?? false,
 			isDeleted: false,
-			//TODO userId: this.dialogConfig.data.userId
+			userId: this.dialogConfig.data.userId
 		};
 		switch (this.dialogConfig.data.clickType) {
 			case FormTypeEnum.ADD: {
@@ -59,6 +62,7 @@ export class TaskFormComponent implements OnInit {
 	private addTask(task: TaskDTO): void {
 		this.apiService.addTask(task).subscribe({
 			next: (response) => {
+				this.eventService.emit(EventTypeEnum.ADD_TASK);
 				this.messageService.add({
 					severity: "success",
 					summary: "Success! Task was added",
@@ -70,7 +74,7 @@ export class TaskFormComponent implements OnInit {
 					severity: "error",
 					summary: "Error! Task could not be added",
 					detail: error.status + " " + error.statusText
-				});
+				})
 			}
 		});
 	}
@@ -78,6 +82,7 @@ export class TaskFormComponent implements OnInit {
 	private editTask(task: TaskDTO): void {
 		this.apiService.editTask(task).subscribe({
 			next: (response) => {
+				this.eventService.emit(EventTypeEnum.EDIT_TASK);
 				this.messageService.add({
 					severity: "success",
 					summary: "Success! Task was updated",
