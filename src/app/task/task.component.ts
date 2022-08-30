@@ -40,7 +40,7 @@ export class TaskComponent {
 			this.apiService.changeTaskStatus(this.task.id).subscribe({
 				next: (response) => {
 					updatedTaskDTO = response;
-					const messageDetail: string = updatedTaskDTO.isCompleted ? "completed" : "in progress";
+					const messageDetail: string = updatedTaskDTO.isCompleted ? "done" : "to do";
 					this.eventService.emit(EventTypeEnum.UPDATE_STATUS_TASK);
 					this.messageService.add({
 						severity: "success",
