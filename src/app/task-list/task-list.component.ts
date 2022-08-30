@@ -14,7 +14,7 @@ import { TaskFormComponent } from "../task-form/task-form.component";
 	styleUrls: ["./task-list.component.css"],
 	providers: [DialogService]
 })
-export class TaskListComponent implements OnDestroy {
+export class TaskListComponent implements OnInit, OnDestroy {
 
 	public taskDTOs?: TaskDTO[];
 	public completedTaskDTOs?: TaskDTO[];
@@ -30,8 +30,11 @@ export class TaskListComponent implements OnDestroy {
 		private apiService: ApiService,
 		private eventService: EventService
 	) {
-		this.prepareTasks();
 		this.handleEvents();
+	}
+
+	public ngOnInit(): void {
+		this.prepareTasks();
 	}
 
 	private prepareTasks(): void {
