@@ -31,14 +31,15 @@ export class TaskListComponent implements OnInit, OnDestroy {
 		private apiService: ApiService,
 		private eventService: EventService,
 		private messsageService: MessageService
-	) {}
-
-	public ngOnInit(): void {
-		this.getTasks();
+	) {
 		this.handleEvents();
 	}
 
-	public getTasks(): void {
+	public ngOnInit(): void {
+		this.prepareTasks();
+	}
+
+	private prepareTasks(): void {
 		this.apiService.getAllTasks().subscribe({
 			next: (tasks) => {
 				this.taskDTOs = tasks;
@@ -60,19 +61,19 @@ export class TaskListComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	public handleEvents(): void {
+	private handleEvents(): void {
 		this.subscriptionIds.push(this.eventService.subscribe(EventTypeEnum.ADD_TASK, () => {
-			this.getTasks();
+			this.prepareTasks();
 			this.dynamicDialogRef?.close();
 		}));
 		this.subscriptionIds.push(this.eventService.subscribe(EventTypeEnum.EDIT_TASK, () => {
-			this.getTasks();
+			this.prepareTasks();
 		}));
 		this.subscriptionIds.push(this.eventService.subscribe(EventTypeEnum.DELETE_TASK, () => {
-			this.getTasks();
+			this.prepareTasks();
 		}));
 		this.subscriptionIds.push(this.eventService.subscribe(EventTypeEnum.UPDATE_STATUS_TASK, () => {
-			this.getTasks();
+			this.prepareTasks();
 		}));
 	}
 

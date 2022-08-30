@@ -97,7 +97,6 @@ export class TaskComponent {
 				title: this.task.title,
 				description: this.task.description,
 				isCompleted: this.task.isCompleted,
-				userId: this.task.userId,
 				clickType: clickTypeParam
 			}
 		});
