@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { DialogService } from "primeng/dynamicdialog";
-import { FormTypeEnum } from "../shared/click-type.enum";
 
-import { TaskDTO } from "../shared/TaskDTO";
+import { ApiService } from "../shared/api.service";
+import { FormTypeEnum } from "../shared/form-type.enum";
+import { TaskDTO } from "../shared/task.dto";
 import { TaskFormComponent } from "../task-form/task-form.component";
 
 @Component({
@@ -24,11 +25,17 @@ export class TaskComponent {
 	public areTaskDetailsShown: boolean = false;
 
 	public constructor(
-		private dialogService: DialogService
+		private dialogService: DialogService,
+		private apiService: ApiService
 	) { }
 
 	public handleClickStatus(): void {
-		console.log(this.task.isCompleted, this.task.id);
+		if (this.task.id) {
+			let updatedTaskDTO: TaskDTO = {};
+			this.apiService.changeTaskStatus(this.task.id).subscribe(
+				(response) => updatedTaskDTO = response
+			);
+		}
 	}
 
 	public handleClickEdit(): void {
@@ -36,11 +43,15 @@ export class TaskComponent {
 	}
 
 	public handleClickDelete(): void {
-		console.log("Clicked Delete Button", this.task.id);
+		if (this.task.id) {
+			let deletedTaskDTO: TaskDTO = {};
+			this.apiService.deleteTask(this.task.id).subscribe(
+				(response) => deletedTaskDTO = response
+			);
+		}
 	}
 
 	public handleTaskForm(clickTypeParam: FormTypeEnum): void {
-		console.warn("handleTaskForm() was called.");
 		this.dialogService.open(TaskFormComponent, {
 			header: "Edit-Task",
 			height: "40%",

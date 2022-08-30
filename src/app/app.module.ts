@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule } from "@angular/common/http";
 import { InputTextModule } from "primeng/inputtext";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { CardModule } from "primeng/card";
@@ -50,7 +51,8 @@ import { MessageService } from "primeng/api";
 		InputTextareaModule,
 		ButtonModule,
 		MenubarModule,
-		ToastModule
+		ToastModule,
+		HttpClientModule
 	],
 	providers: [MessageService],
 	bootstrap: [AppComponent]
