@@ -9,11 +9,11 @@
 
 <div *ngIf="isFilterActive">
 	<h1>Tasks</h1>
-	<h2>In progress</h2>
+	<h2>To do</h2>
 	<div *ngFor="let task of inProgressTaskDTOs">
 		<task *ngIf="!task.isDeleted" [task]="task"></task>
 	</div>
-	<h2>Completed</h2>
+	<h2>Done</h2>
 	<div *ngFor="let task of completedTaskDTOs">
 		<task *ngIf="!task.isDeleted" [task]="task"></task>
 	</div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { MessageService } from "primeng/api";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 
 import { ApiService } from "../shared/api.service";
@@ -28,7 +29,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
 	public constructor(
 		private dialogService: DialogService,
 		private apiService: ApiService,
-		private eventService: EventService
+		private eventService: EventService,
+		private messsageService: MessageService
 	) {
 		this.handleEvents();
 	}
@@ -38,13 +40,25 @@ export class TaskListComponent implements OnInit, OnDestroy {
 	}
 
 	private prepareTasks(): void {
-		this.apiService.getAllTasks().subscribe(
-			(tasks) => {
+		this.apiService.getAllTasks().subscribe({
+			next: (tasks) => {
 				this.taskDTOs = tasks;
 				this.completedTaskDTOs = this.taskDTOs.filter(task => task.isCompleted);
 				this.inProgressTaskDTOs = this.taskDTOs.filter(task => !task.isCompleted);
+				this.messsageService.add({
+					severity: "success",
+					summary: "Success!",
+					detail: "Fetch tasks"
+				});
+			},
+			error: (error) => {
+				this.messsageService.add({
+					severity: "error",
+					summary: "Errror!",
+					detail: error.status + " " + error.statusText
+				});
 			}
-		);
+		});
 	}
 
 	private handleEvents(): void {

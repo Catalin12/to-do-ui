@@ -6,11 +6,13 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { InputTextModule } from "primeng/inputtext";
 import { InputTextareaModule } from "primeng/inputtextarea";
-import { CardModule} from "primeng/card";
-import { ToggleButtonModule} from "primeng/togglebutton";
+import { CardModule } from "primeng/card";
+import { ToggleButtonModule } from "primeng/togglebutton";
 import { MenubarModule } from "primeng/menubar";
 import { DialogModule } from "primeng/dialog";
 import { ButtonModule } from "primeng/button";
+import { ToastModule } from "primeng/toast";
+import { MessageService } from "primeng/api";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -49,9 +51,10 @@ import { NavBarComponent } from "./nav-bar/nav-bar.component";
 		InputTextareaModule,
 		ButtonModule,
 		MenubarModule,
+		ToastModule,
 		HttpClientModule
 	],
-	providers: [],
+	providers: [MessageService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
