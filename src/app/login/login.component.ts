@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { MessageService } from "primeng/api";
 
 import { AuthService } from "../shared/auth.service";
+import { EventTypeEnum } from "../shared/event-type.enum";
+import { EventService } from "../shared/event.service";
 import { LocalStorageService } from "../shared/local-storage.service";
 import { LoginDTO } from "../shared/login.dto";
 
@@ -35,7 +37,8 @@ export class LoginComponent {
 		private authService: AuthService,
 		private router: Router,
 		private localStorageService: LocalStorageService,
-		private messageService: MessageService
+		private messageService: MessageService,
+		private eventService: EventService
 	) { }
 
 	public handleClickLogin(): void {
@@ -47,6 +50,7 @@ export class LoginComponent {
 			next: (token) => {
 				this.localStorageService.addToken(token);
 				this.router.navigate(["/"]);
+				this.eventService.emit(EventTypeEnum.LOGIN);
 				this.messageService.add({
 					severity: "success",
 					summary: "Success! You are logged in",

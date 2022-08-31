@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { Router } from "@angular/router";
-import { LocalStorageService } from "../shared/local-storage.service";
+import { EventTypeEnum } from "../shared/event-type.enum";
+import { EventService } from "../shared/event.service";
 
 @Component({
 	selector: "nav-bar",
@@ -16,7 +17,7 @@ export class NavBarComponent {
 
 	public constructor(
 		private router: Router,
-		private localStorageService: LocalStorageService
+		private eventService: EventService
 	) {}
 
 	public handleFilterButtonClick(): void {
@@ -24,7 +25,7 @@ export class NavBarComponent {
 	}
 
 	public handleLogoutButtonClick(): void {
-		this.localStorageService.removeToken();
+		this.eventService.emit(EventTypeEnum.LOGOUT);
 		this.router.navigate(["login"]);
 	}
 }
