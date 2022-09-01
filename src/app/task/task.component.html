@@ -2,7 +2,7 @@
 	[class.strikethrough]="task.isCompleted">
 	<div class="header">
 		<p class="title">{{task.title}} </p>
-		<div class="buttons">
+		<div class="buttons" *ngIf="areTaskDetailsShown">
 			<p-toggleButton [(ngModel)]="task.isCompleted" (click)="handleClickStatus()" [onIcon]="'pi pi-minus-circle'"
 				[offIcon]="'pi pi-check-circle'" [onLabel]="'Move in progress'" [offLabel]="'Mark as done'"
 				[iconPos]="'right'" class="p-button-danger">
