@@ -45,11 +45,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
 				this.taskDTOs = tasks;
 				this.completedTaskDTOs = this.taskDTOs.filter(task => task.isCompleted);
 				this.inProgressTaskDTOs = this.taskDTOs.filter(task => !task.isCompleted);
-				this.messsageService.add({
-					severity: "success",
-					summary: "Success!",
-					detail: "Fetch tasks"
-				});
 			},
 			error: (error) => {
 				this.messsageService.add({
