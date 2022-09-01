@@ -25,6 +25,7 @@ import { RegisterComponent } from "./register/register.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
+import { DialogService } from "primeng/dynamicdialog";
 
 @NgModule({
 	declarations: [
@@ -55,7 +56,9 @@ import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
 		ToastModule,
 		HttpClientModule
 	],
-	providers: [MessageService,
+	providers: [
+		MessageService,
+		DialogService,
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }
 	],
 	bootstrap: [AppComponent]
