@@ -1,13 +1,11 @@
 <p-menubar>
-    <div>
-		<p-toggleButton [(ngModel)]="isFilterActive"
-			(click)="handleFilterButtonClick()"
-			[onIcon]="'pi pi-align-justify'" 
-			[offIcon]="'pi pi-sort-alt'"
-			[onLabel]="'See default list'"
-			[offLabel]="'Sort tasks by status'"
-			[iconPos]="'left'">
+	<div>
+		<button pButton type="button" label="New Task" class="p-button-success" (click)="handleTaskForm()"></button>
+		<p-toggleButton [(ngModel)]="isFilterActive" (click)="handleFilterButtonClick()"
+			[onIcon]="'pi pi-align-justify'" [offIcon]="'pi pi-sort-alt'" [onLabel]="'See default list'"
+			[offLabel]="'Sort tasks by status'" [iconPos]="'left'">
 		</p-toggleButton>
-        <button type="button" pButton label="Logout" icon="pi pi-sign-out" (click)="handleLogoutButtonClick()" style="margin-left:.25em"></button>
-    </div>
+		<button type="button" pButton label="Logout" icon="pi pi-sign-out" (click)="handleLogoutButtonClick()"
+			style="margin-left:.25em"></button>
+	</div>
 </p-menubar>

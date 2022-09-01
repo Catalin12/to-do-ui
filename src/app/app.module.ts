@@ -13,6 +13,7 @@ import { DialogModule } from "primeng/dialog";
 import { ButtonModule } from "primeng/button";
 import { ToastModule } from "primeng/toast";
 import { MessageService } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -55,7 +56,9 @@ import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
 		ToastModule,
 		HttpClientModule
 	],
-	providers: [MessageService,
+	providers: [
+		MessageService,
+		DialogService,
 		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }
 	],
 	bootstrap: [AppComponent]
