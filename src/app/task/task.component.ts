@@ -69,12 +69,11 @@ export class TaskComponent {
 	public handleConfirmDeleteDialog(): void {
 		this.confirmationService.confirm({
 			message: "Do you want to delete this record?",
-			header: "Delete Confirmation",
+			header: "Delete confirmation",
 			icon: "pi pi-info-circle",
 			accept: () => {
 				this.handleClickDelete();
-			},
-			reject: () => {}
+			}
 		});
 	}
 
