@@ -13,6 +13,7 @@ import { DialogModule } from "primeng/dialog";
 import { ButtonModule } from "primeng/button";
 import { ToastModule } from "primeng/toast";
 import { MessageService } from "primeng/api";
+import { DialogService } from "primeng/dynamicdialog";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -25,7 +26,6 @@ import { RegisterComponent } from "./register/register.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
-import { DialogService } from "primeng/dynamicdialog";
 
 @NgModule({
 	declarations: [
