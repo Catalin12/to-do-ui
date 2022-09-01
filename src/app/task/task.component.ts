@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { MessageService } from "primeng/api";
+import { ConfirmationService, MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
 
 import { ApiService } from "../shared/api.service";
@@ -12,7 +12,8 @@ import { TaskFormComponent } from "../task-form/task-form.component";
 @Component({
 	selector: "task",
 	templateUrl: "./task.component.html",
-	styleUrls: ["./task.component.css"]
+	styleUrls: ["./task.component.css"],
+	providers: [ ConfirmationService ]
 })
 export class TaskComponent {
 
@@ -32,7 +33,8 @@ export class TaskComponent {
 		private dialogService: DialogService,
 		private apiService: ApiService,
 		private eventService: EventService,
-		private messageService: MessageService
+		private messageService: MessageService,
+		private confirmationService: ConfirmationService
 	) { }
 
 	public handleClickStatus(): void {
@@ -64,12 +66,16 @@ export class TaskComponent {
 		this.handleTaskForm(FormTypeEnum.EDIT);
 	}
 
-	public handleShowConfirmDeleteDialog(): void {
-		this.isConfirmDeleteDialogShown = true;
-	}
-
-	public handleHideConfirmDeleteDialog(): void {
-		this.isConfirmDeleteDialogShown = false;
+	public handleConfirmDeleteDialog(): void {
+		this.confirmationService.confirm({
+			message: "Do you want to delete this record?",
+			header: "Delete Confirmation",
+			icon: "pi pi-info-circle",
+			accept: () => {
+				this.handleClickDelete();
+			},
+			reject: () => {}
+		});
 	}
 
 	public handleClickDelete(): void {
