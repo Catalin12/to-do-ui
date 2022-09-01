@@ -27,7 +27,6 @@ export class TaskComponent {
 	public onDelete = new EventEmitter<number>();
 
 	public areTaskDetailsShown: boolean = false;
-	public isConfirmDeleteDialogShown: boolean = false;
 
 	public constructor(
 		private dialogService: DialogService,
