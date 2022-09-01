@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { InputTextModule } from "primeng/inputtext";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { CardModule } from "primeng/card";
@@ -24,6 +24,7 @@ import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
+import { JwtInterceptorService } from "./shared/jwt-interceptor.service";
 
 @NgModule({
 	declarations: [
@@ -54,7 +55,9 @@ import { NavBarComponent } from "./nav-bar/nav-bar.component";
 		ToastModule,
 		HttpClientModule
 	],
-	providers: [MessageService],
+	providers: [MessageService,
+		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
