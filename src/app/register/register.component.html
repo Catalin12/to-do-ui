@@ -2,10 +2,10 @@
 	<form [formGroup]="registerForm" (ngSubmit)="handleClickRegister()">
 		<div class="col-12">
 			<div class="p-inputgroup">
-				<input type="email" pInputText placeholder="Email" formControlName="email">      
+				<input type="email" pInputText placeholder="Email" formControlName="email">
 			</div>
 		</div>
-		<div *ngIf="email.invalid" class="alert-danger">
+		<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert-danger">
 			<div *ngIf="email.errors?.['required']">
 				Email is required.
 			</div>
@@ -16,22 +16,23 @@
 
 		<div class="col-12">
 			<div class="p-inputgroup">
-				<input type="password" pInputText placeholder="Password" formControlName="password">  
+				<input type="password" pInputText placeholder="Password" formControlName="password">
 			</div>
 		</div>
-		<div *ngIf="password.invalid" class="alert-danger">
+		<div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert-danger">
 			<div *ngIf="password.errors?.['required']">
 				Password is required.
 			</div>
-			<div *ngIf="email.errors?.['email']">
+			<div *ngIf="password.errors?.['minlength']">
 				Password must have a minimum length of 8.
 			</div>
 		</div>
-	
-		<button pButton label="Sign up" type="submit" class="p-button-primary register-button" [disabled]="!registerForm.valid"></button>
+
+		<button pButton label="Sign up" type="submit" class="p-button-primary register-button"
+			[disabled]="!registerForm.valid"></button>
 	</form>
 
 	<ng-template pTemplate="footer">
 		<a routerLink="/login">Already have an account? Log in</a>
-    </ng-template>
+	</ng-template>
 </p-card>
