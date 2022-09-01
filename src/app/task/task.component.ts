@@ -64,8 +64,12 @@ export class TaskComponent {
 		this.handleTaskForm(FormTypeEnum.EDIT);
 	}
 
-	public handleConfirmDeleteDialog(): void {
+	public handleShowConfirmDeleteDialog(): void {
 		this.isConfirmDeleteDialogShown = true;
+	}
+
+	public handleHideConfirmDeleteDialog(): void {
+		this.isConfirmDeleteDialogShown = false;
 	}
 
 	public handleClickDelete(): void {
