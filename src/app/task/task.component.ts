@@ -26,6 +26,7 @@ export class TaskComponent {
 	public onDelete = new EventEmitter<number>();
 
 	public areTaskDetailsShown: boolean = false;
+	public isConfirmDeleteDialogShown: boolean = false;
 
 	public constructor(
 		private dialogService: DialogService,
@@ -61,6 +62,10 @@ export class TaskComponent {
 
 	public handleClickEdit(): void {
 		this.handleTaskForm(FormTypeEnum.EDIT);
+	}
+
+	public handleConfirmDeleteDialog(): void {
+		this.isConfirmDeleteDialogShown = true;
 	}
 
 	public handleClickDelete(): void {

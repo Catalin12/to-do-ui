@@ -12,7 +12,17 @@
 				class="p-button-danger">
 			</p-toggleButton>
 			<button pButton label="Edit" type="button" icon="pi pi-pencil" [iconPos]="'right'" class="p-button-secondary" (click)="handleClickEdit()"></button>
-			<button pButton label="Delete" type="button" icon="pi pi-trash" [iconPos]="'right'" class="p-button-danger" (click)="handleClickDelete()"></button>
+			<button pButton label="Delete" type="button" icon="pi pi-trash" [iconPos]="'right'" class="p-button-danger" (click)="handleConfirmDeleteDialog()"></button>
 		</div>
 	</div>
 </p-card>
+
+<p-dialog [(visible)]="isConfirmDeleteDialogShown">
+	<ng-template pTemplate="header">
+        Are you sure you want to delete this task?
+    </ng-template>
+    <ng-template pTemplate="footer">
+		<button pButton label="No" type="button" class="p-button-secondary"></button>
+		<button pButton label="Yes" type="button" class="p-button-danger" (click)="handleClickDelete()"></button>
+    </ng-template>
+</p-dialog>
