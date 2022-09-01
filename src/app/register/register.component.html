@@ -1,8 +1,9 @@
 <p-card header="Register">
 	<form [formGroup]="registerForm" (ngSubmit)="handleClickRegister()">
 		<div class="col-12">
-			<div class="p-inputgroup">
-				<input type="email" pInputText placeholder="Email" formControlName="email">
+			<div class="p-float-label" style="margin-bottom:15px;">
+				<input type="email" pInputText formControlName="email">
+				<label for="email">Email</label>
 			</div>
 		</div>
 		<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert-danger">
@@ -15,8 +16,9 @@
 		</div>
 
 		<div class="col-12">
-			<div class="p-inputgroup">
+			<div class="p-float-label" style="margin-bottom:15px;">
 				<input type="password" pInputText placeholder="Password" formControlName="password">
+				<label for="password">Password</label>
 			</div>
 		</div>
 		<div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert-danger">
