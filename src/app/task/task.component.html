@@ -1,18 +1,19 @@
-<p-card header={{task.title}} (mouseenter)="areTaskDetailsShown=true" (mouseleave)="areTaskDetailsShown=false" [class.strikethrough]="task.isCompleted">
-	<p>{{task.description}}</p>
-	<div *ngIf="areTaskDetailsShown">
-		<div>
-			<p-toggleButton [(ngModel)]="task.isCompleted"
-				(click)="handleClickStatus()"
-				[onIcon]="'pi pi-minus-circle'" 
-				[offIcon]="'pi pi-check-circle'"
-				[onLabel]="'Move in progress'"
-				[offLabel]="'Mark as done'"
-				[iconPos]="'right'"
-				class="p-button-danger">
+<p-card (mouseenter)="areTaskDetailsShown=true" (mouseleave)="areTaskDetailsShown=false"
+	[class.strikethrough]="task.isCompleted">
+	<div class="header">
+		<p class="title">{{task.title}} </p>
+		<div class="buttons">
+			<p-toggleButton [(ngModel)]="task.isCompleted" (click)="handleClickStatus()" [onIcon]="'pi pi-minus-circle'"
+				[offIcon]="'pi pi-check-circle'" [onLabel]="'Move in progress'" [offLabel]="'Mark as done'"
+				[iconPos]="'right'" class="p-button-danger">
 			</p-toggleButton>
-			<button pButton label="Edit" type="button" icon="pi pi-pencil" [iconPos]="'right'" class="p-button-secondary" (click)="handleClickEdit()"></button>
-			<button pButton label="Delete" type="button" icon="pi pi-trash" [iconPos]="'right'" class="p-button-danger" (click)="handleClickDelete()"></button>
+			<button pButton label="Edit" type="button" icon="pi pi-pencil" [iconPos]="'right'"
+				class="p-button-secondary" (click)="handleClickEdit()"></button>
+			<button pButton label="Delete" type="button" icon="pi pi-trash" [iconPos]="'right'" class="p-button-danger"
+				(click)="handleClickDelete()"></button>
 		</div>
+	</div>
+	<div *ngIf="areTaskDetailsShown">
+		<p>{{task.description}}</p>
 	</div>
 </p-card>
