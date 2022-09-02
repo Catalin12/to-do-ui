@@ -1,7 +1,33 @@
 .login-button {
-	width: 100%;
+	width: 850%;
+	left: 70%;
 }
 
 .alert-danger {
 	color: #e24c4c;
+}
+
+form {
+	width: 10%;
+	justify-content: center;
+	text-align: center;
+}
+
+.container {
+	justify-content: center;
+	text-align: center;
+	display: flex;
+	margin-top: 4%;
+}
+
+.col-12 {
+	margin-left: 10px;
+	padding: 5px;
+}
+
+.error {
+	height: 60px;
+	width: 900%;
+	font-size: 12px;
+	display: flex;
 }
