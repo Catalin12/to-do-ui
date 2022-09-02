@@ -1,40 +1,42 @@
-<p-card header="Register">
-	<form [formGroup]="registerForm" (ngSubmit)="handleClickRegister()">
-		<div class="col-12">
-			<div class="p-float-label" style="margin-bottom:15px;">
-				<input type="email" pInputText formControlName="email">
-				<label for="email">Email</label>
+<div class="container">
+	<p-card header="Register">
+		<form [formGroup]="registerForm" (ngSubmit)="handleClickRegister()">
+			<div class="col-12">
+				<div class="p-float-label" style="margin-bottom:15px;">
+					<input type="email" pInputText formControlName="email">
+					<label for="email">Email</label>
+				</div>
 			</div>
-		</div>
-		<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert-danger">
-			<div *ngIf="email.errors?.['required']">
-				Email is required.
+			<div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert-danger">
+				<div *ngIf="email.errors?.['required']" class="error">
+					Email is required.
+				</div>
+				<div *ngIf="email.errors?.['email']" class="error">
+					Email must be "[...]@[...]".
+				</div>
 			</div>
-			<div *ngIf="email.errors?.['email']">
-				Email must be "[...]@[...]".
-			</div>
-		</div>
 
-		<div class="col-12">
-			<div class="p-float-label" style="margin-bottom:15px;">
-				<input type="password" pInputText placeholder="Password" formControlName="password">
-				<label for="password">Password</label>
+			<div class="col-12">
+				<div class="p-float-label" style="margin-bottom:15px;">
+					<input type="password" pInputText placeholder="Password" formControlName="password">
+					<label for="password">Password</label>
+				</div>
 			</div>
-		</div>
-		<div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert-danger">
-			<div *ngIf="password.errors?.['required']">
-				Password is required.
+			<div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert-danger">
+				<div *ngIf="password.errors?.['required']" class="error">
+					Password is required.
+				</div>
+				<div *ngIf="password.errors?.['minlength']" class="error">
+					Password must have a minimum length of 8.
+				</div>
 			</div>
-			<div *ngIf="password.errors?.['minlength']">
-				Password must have a minimum length of 8.
-			</div>
-		</div>
+			<br>
+			<button pButton label="Sign up" type="submit" class="p-button-primary register-button"
+				[disabled]="!registerForm.valid"></button>
+		</form>
 
-		<button pButton label="Sign up" type="submit" class="p-button-primary register-button"
-			[disabled]="!registerForm.valid"></button>
-	</form>
-
-	<ng-template pTemplate="footer">
-		<a routerLink="/login">Already have an account? Log in</a>
-	</ng-template>
-</p-card>
+		<ng-template pTemplate="footer">
+			<a routerLink="/login">Already have an account? Log in</a>
+		</ng-template>
+	</p-card>
+</div>
