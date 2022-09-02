@@ -1,18 +1,32 @@
 <div *ngIf="!isFilterActive">
-	<h1>Tasks</h1>
-	<div *ngFor="let task of taskDTOs">
-		<task *ngIf="!task.isDeleted" [task]="task"></task>
+	<div *ngIf="taskDTOs?.length">
+		<h1>Tasks</h1>
+		<div *ngFor="let task of taskDTOs">
+			<task [task]="task"></task>
+		</div>
+	</div>
+	<div *ngIf="taskDTOs?.length===0">
+		<h1>No tasks</h1>
 	</div>
 </div>
 
 <div *ngIf="isFilterActive">
-	<h1>Tasks</h1>
-	<h2>To do</h2>
-	<div *ngFor="let task of inProgressTaskDTOs">
-		<task *ngIf="!task.isDeleted" [task]="task"></task>
+	<div *ngIf="taskDTOs?.length">
+		<h1>Tasks</h1>
+		<div *ngIf="inProgressTaskDTOs?.length">
+			<h2>To do</h2>
+			<div *ngFor="let task of inProgressTaskDTOs">
+				<task [task]="task"></task>
+			</div>
+		</div>
+		<div *ngIf="completedTaskDTOs?.length">
+			<h2>Done</h2>
+			<div *ngFor="let task of completedTaskDTOs">
+				<task [task]="task"></task>
+			</div>
+		</div>
 	</div>
-	<h2>Done</h2>
-	<div *ngFor="let task of completedTaskDTOs">
-		<task *ngIf="!task.isDeleted" [task]="task"></task>
+	<div *ngIf="taskDTOs?.length===0">
+		<h1>No tasks</h1>
 	</div>
 </div>
