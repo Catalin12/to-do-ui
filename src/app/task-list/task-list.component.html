@@ -13,16 +13,18 @@
 <div *ngIf="isFilterActive">
 	<div *ngIf="taskDTOs?.length">
 		<h1>Tasks</h1>
-		<div *ngIf="inProgressTaskDTOs?.length">
-			<h2>To do</h2>
-			<div *ngFor="let task of inProgressTaskDTOs">
-				<task [task]="task"></task>
+		<div class="row">
+			<div class="column" *ngIf="inProgressTaskDTOs?.length">
+				<h2>To do</h2>
+				<div *ngFor="let task of inProgressTaskDTOs">
+					<task [task]="task"></task>
+				</div>
 			</div>
-		</div>
-		<div *ngIf="completedTaskDTOs?.length">
-			<h2>Done</h2>
-			<div *ngFor="let task of completedTaskDTOs">
-				<task [task]="task"></task>
+			<div class="column" *ngIf="completedTaskDTOs?.length">
+				<h2>Done</h2>
+				<div *ngFor="let task of completedTaskDTOs">
+					<task [task]="task"></task>
+				</div>
 			</div>
 		</div>
 	</div>
