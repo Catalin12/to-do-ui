@@ -42,7 +42,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 	private prepareTasks(): void {
 		this.apiService.getAllTasks().subscribe({
 			next: (tasks) => {
-				this.taskDTOs = tasks;
+				this.taskDTOs = tasks.filter(task => !task.isDeleted);
 				this.completedTaskDTOs = this.taskDTOs.filter(task => task.isCompleted);
 				this.inProgressTaskDTOs = this.taskDTOs.filter(task => !task.isCompleted);
 			},
@@ -84,6 +84,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
 				clickType: FormTypeEnum.ADD
 			}
 		});
+	}
+
+	public trackById(taskDto: any): number {
+		return taskDto.id ?? 0;
 	}
 
 	public ngOnDestroy(): void {

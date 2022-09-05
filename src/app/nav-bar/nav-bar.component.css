@@ -1,0 +1,3 @@
+:host ::ng-deep .p-menubar .p-menubar-button {
+	display: none;
+}
