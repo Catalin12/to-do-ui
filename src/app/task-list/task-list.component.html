@@ -1,7 +1,7 @@
 <div *ngIf="!isFilterActive">
 	<div *ngIf="taskDTOs?.length">
 		<h1>Tasks</h1>
-		<div *ngFor="let task of taskDTOs">
+		<div *ngFor="let task of taskDTOs; trackBy: trackById">
 			<task [task]="task"></task>
 		</div>
 	</div>
@@ -16,13 +16,13 @@
 		<div class="row">
 			<div class="column" *ngIf="inProgressTaskDTOs?.length">
 				<h2>To do</h2>
-				<div *ngFor="let task of inProgressTaskDTOs">
+				<div *ngFor="let task of inProgressTaskDTOs; trackBy: trackById">
 					<task [task]="task"></task>
 				</div>
 			</div>
 			<div class="column" *ngIf="completedTaskDTOs?.length">
 				<h2>Done</h2>
-				<div *ngFor="let task of completedTaskDTOs">
+				<div *ngFor="let task of completedTaskDTOs; trackBy: trackById">
 					<task [task]="task"></task>
 				</div>
 			</div>

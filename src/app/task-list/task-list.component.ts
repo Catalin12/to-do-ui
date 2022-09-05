@@ -86,6 +86,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
 		});
 	}
 
+	public trackById(taskDto: any): number {
+		return taskDto.id ?? 0;
+	}
+
 	public ngOnDestroy(): void {
 		for (const subscriptionId of this.subscriptionIds) {
 			this.eventService.unsubscribe(subscriptionId);
